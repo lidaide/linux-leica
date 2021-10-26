@@ -124,7 +124,7 @@ static struct regulator_ops pca9450_ldo_regulator_ops = {
  * BUCK1/2/3
  * 0.60 to 2.1875V (12.5mV step)
  */
-static const struct linear_range pca9450_dvs_buck_volts[] = {
+static const struct regulator_linear_range pca9450_dvs_buck_volts[] = {
 	REGULATOR_LINEAR_RANGE(600000,  0x00, 0x7F, 12500),
 };
 
@@ -132,7 +132,7 @@ static const struct linear_range pca9450_dvs_buck_volts[] = {
  * BUCK4/5/6
  * 0.6V to 3.4V (25mV step)
  */
-static const struct linear_range pca9450_buck_volts[] = {
+static const struct regulator_linear_range pca9450_buck_volts[] = {
 	REGULATOR_LINEAR_RANGE(600000, 0x00, 0x70, 25000),
 	REGULATOR_LINEAR_RANGE(3400000, 0x71, 0x7F, 0),
 };
@@ -141,7 +141,7 @@ static const struct linear_range pca9450_buck_volts[] = {
  * LDO1
  * 1.6 to 3.3V ()
  */
-static const struct linear_range pca9450_ldo1_volts[] = {
+static const struct regulator_linear_range pca9450_ldo1_volts[] = {
 	REGULATOR_LINEAR_RANGE(1600000, 0x00, 0x03, 100000),
 	REGULATOR_LINEAR_RANGE(3000000, 0x04, 0x07, 100000),
 };
@@ -150,7 +150,7 @@ static const struct linear_range pca9450_ldo1_volts[] = {
  * LDO2
  * 0.8 to 1.15V (50mV step)
  */
-static const struct linear_range pca9450_ldo2_volts[] = {
+static const struct regulator_linear_range pca9450_ldo2_volts[] = {
 	REGULATOR_LINEAR_RANGE(800000, 0x00, 0x07, 50000),
 };
 
@@ -158,7 +158,7 @@ static const struct linear_range pca9450_ldo2_volts[] = {
  * LDO3/4
  * 0.8 to 3.3V (100mV step)
  */
-static const struct linear_range pca9450_ldo34_volts[] = {
+static const struct regulator_linear_range pca9450_ldo34_volts[] = {
 	REGULATOR_LINEAR_RANGE(800000, 0x00, 0x19, 100000),
 	REGULATOR_LINEAR_RANGE(3300000, 0x1A, 0x1F, 0),
 };
@@ -167,7 +167,7 @@ static const struct linear_range pca9450_ldo34_volts[] = {
  * LDO5
  * 1.8 to 3.3V (100mV step)
  */
-static const struct linear_range pca9450_ldo5_volts[] = {
+static const struct regulator_linear_range pca9450_ldo5_volts[] = {
 	REGULATOR_LINEAR_RANGE(1800000,  0x00, 0x0F, 100000),
 };
 
