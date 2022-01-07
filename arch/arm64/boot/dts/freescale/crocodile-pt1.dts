@@ -9,6 +9,13 @@
 
 / {
 	model = "Crocodile-PT1";
+
+    usdhc1_pwrseq: usdhc1_pwrseq {
+		compatible = "mmc-pwrseq-simple";
+		//pinctrl-names = "default";
+		//pinctrl-0 = <&pinctrl_usdhc1_gpio>;
+		reset-gpios = <&gpio1 1 GPIO_ACTIVE_LOW>;
+    };
 };
 
 &usbotg2 {
@@ -30,3 +37,62 @@
 	/delete-property/ phy-reset-gpios;
 	/delete-property/ phy-reset-duration;
 };
+
+&usdhc1 {
+	#address-cells = <1>;
+	#size-cells = <0>;
+	assigned-clocks = <&clk IMX8MM_CLK_USDHC1_ROOT>;
+	assigned-clock-rates = <200000000>;
+	pinctrl-names = "default";
+	pinctrl-0 = <&pinctrl_usdhc1>;
+    pinctrl-1 = <&pinctrl_usdhc1_100mhz>;
+    pinctrl-2 = <&pinctrl_usdhc1_200mhz>;
+	no-sd;
+    non-removable;
+    mmc-pwrseq = <&usdhc1_pwrseq>;
+	status = "okay";
+};
+
+&iomuxc {
+    /*
+    pinctrl_usdhc1_gpio: usdhc1gpiogrp {
+		fsl,pins = <
+			CROCODILE_WIFIBT_PWR_DOWN	0x00
+		>;
+	};
+    */
+
+    pinctrl_usdhc1: usdhc1grp {
+		fsl,pins = <
+			CROCODILE_IMX8_SD1_CLK		0x190
+			CROCODILE_IMX8_SD1_CMD		0x1d0
+			CROCODILE_IMX8_SD1_DATA0		0x1d0
+			CROCODILE_IMX8_SD1_DATA1		0x1d0
+			CROCODILE_IMX8_SD1_DATA2		0x1d0
+			CROCODILE_IMX8_SD1_DATA3		0x1d0
+		>;
+	};
+
+	pinctrl_usdhc1_100mhz: usdhc1-100mhzgrp {
+		fsl,pins = <
+			CROCODILE_IMX8_SD1_CLK		0x194
+			CROCODILE_IMX8_SD1_CMD		0x1d4
+			CROCODILE_IMX8_SD1_DATA0		0x1d4
+			CROCODILE_IMX8_SD1_DATA1		0x1d4
+			CROCODILE_IMX8_SD1_DATA2		0x1d4
+			CROCODILE_IMX8_SD1_DATA3		0x1d4
+		>;
+	};
+
+	pinctrl_usdhc1_200mhz: usdhc1-200mhzgrp {
+		fsl,pins = <
+			CROCODILE_IMX8_SD1_CLK		0x196
+			CROCODILE_IMX8_SD1_CMD		0x1d6
+			CROCODILE_IMX8_SD1_DATA0		0x1d6
+			CROCODILE_IMX8_SD1_DATA1		0x1d6
+			CROCODILE_IMX8_SD1_DATA2		0x1d6
+			CROCODILE_IMX8_SD1_DATA3		0x1d6
+		>;
+	};
+};
+
